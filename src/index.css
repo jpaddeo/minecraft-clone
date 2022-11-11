@@ -16,3 +16,13 @@ body,
 body {
   position: fixed;
 }
+
+.pointer {
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+}

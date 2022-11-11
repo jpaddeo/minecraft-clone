@@ -6,8 +6,9 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { Vector3 } from 'three'
 import { useKeyboard } from '../hooks/useKeyboard'
 
-const PLAYER_SPEED = 2
-const PLAYER_JUMP_FORCE = 10
+const PLAYER_SPEED_WALK = 2
+const PLAYER_SPEED_RUN = 5
+const PLAYER_JUMP_FORCE = 5
 
 export default function Player() {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } = useKeyboard()
@@ -55,7 +56,7 @@ export default function Player() {
     playerDirection
       .subVectors(frontVector, sideVector)
       .normalize()
-      .multiplyScalar(PLAYER_SPEED)
+      .multiplyScalar(PLAYER_SPEED_RUN)
       .applyEuler(camera.rotation)
 
     api.velocity.set(
@@ -63,6 +64,14 @@ export default function Player() {
       playerVelocity.current[1],
       playerDirection.z
     )
+
+    if (jump && Math.abs(playerVelocity.current[1]) < 0.05) {
+      api.velocity.set(
+        playerVelocity.current[0],
+        PLAYER_JUMP_FORCE,
+        playerVelocity.current[2]
+      )
+    }
   })
 
   return <mesh ref={ref} />
