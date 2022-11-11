@@ -26,3 +26,30 @@ body {
   transform: translate(-50%, -50%);
   opacity: 0.7;
 }
+
+.texture-selector {
+  background: #ccc;
+  bottom: 32px;
+  border: 3px solid #000;
+  padding: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.texture-selector.hidden {
+  display: none;
+}
+
+.texture-selector img {
+  width: 50px;
+  z-index: 100;
+  border: 3px solid #000;
+  image-rendering: pixelated;
+}
+
+.texture-selector img.selected {
+  border: 3px solid red;
+}
