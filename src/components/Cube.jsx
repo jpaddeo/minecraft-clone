@@ -16,6 +16,7 @@ export default function Cube({ id, position, texture }) {
 
   const handleCubeClick = useCallback(
     (event) => {
+      event.stopPropagation()
       if (event.altKey) {
         removeCube(id)
       }
@@ -36,7 +37,7 @@ export default function Cube({ id, position, texture }) {
       }}
       onClick={handleCubeClick}
     >
-      <boxBufferGeometry attach='geometry' />
+      <boxGeometry attach='geometry' />
       <meshStandardMaterial
         color={hovered ? 'grey' : 'white'}
         transparent
